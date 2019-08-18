@@ -1,4 +1,4 @@
-import discord, random, csv
+import discord as discord
 
 TOKEN = 'NjEyNDIzOTk0MzU1ODc1ODcx.XViTLQ.Q4d3V-LYL_uWh7392ESxH5J2qXg'
 
@@ -13,10 +13,11 @@ async def on_message(message):
     if message.author == client.user:
         return
     print(message)
-    if message.content.startswith((prefix+"hi").lower):
-        message.author.id = UserID;
-        msg = ("Hi, "+"<@"+UserID+"!").format(message)
-        await client.send_message(message.channel, msg)
+    if message.content.startswith("=hi".lower()):
+        UserID = str(message.author.id)
+        channel = message.channel
+        msg = ("Hi, "+ message.author.mention+"!")
+        await channel.send(msg)
 
 @client.event
 async def on_ready():
