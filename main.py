@@ -12,11 +12,10 @@ async def on_message(message):
     # we do not want the bot to reply to itself
     if message.author == client.user:
         return
-    print(message)
-    if message.content.startswith("=hi".lower()):
-        UserID = str(message.author.id)
+    print(message.channel.name+"-"+message.author.name+":"+message.content)
+    if message.content.startswith("{0}hi".lower().format(prefix)):
         channel = message.channel
-        msg = ("Hi, "+ message.author.mention+"!")
+        msg = ("Hi, "+message.author.mention+"!")
         await channel.send(msg)
 
 @client.event
