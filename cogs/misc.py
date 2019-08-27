@@ -21,6 +21,13 @@ class Misc(commands.Cog):
 
         cogs = [c for c in self.bot.cogs.keys()]
 
+        if ctx.message.author.permissions_in(ctx.message.channel).administrator:
+            pass
+        else:
+            #If the user isn't an admin, the admin commands will be hidden from the help.
+            cogs.pop(cogs.index("admin"))
+
+
     # If cog is not specified by the user, we list all cogs and commands
 
         if cog == 'all':
@@ -48,21 +55,21 @@ class Misc(commands.Cog):
 
                 for command in commands_list:
                     help_text += f'```{command.name}```\n' \
-                        f'**{command.description}**\n\n'
+                        f'**{command.description}**\n'
 
                     # Also add aliases, if there are any
                     if len(command.aliases) > 0:
-                        help_text += f'**Aliases :** `{"`, `".join(command.aliases)}`\n\n\n'
+                        help_text += f'**Aliases :** `{"`, `".join(command.aliases)}`\n\n'
                     else:
                         # Add a newline character to keep it pretty
                         # That IS the whole purpose of custom help
                         help_text += '\n'
 
                         # Finally the format
-                        help_text += f'Format: `@{self.bot.user.name}#{self.bot.user.discriminator}' \
-                            f' {command.name} {command.usage if command.usage is not None else ""}`\n\n\n\n'
+                    help_text += f'Format: `@{self.bot.user.name}#{self.bot.user.discriminator}' \
+                            f' {command.name} {command.usage if command.usage is not None else ""}`\n\n'
 
-                        embed.description = help_text
+                    embed.description = help_text
                 embed.set_footer(text="This bot was made by @Korbarus1384! please buy me food i haven't eaten in weeks this is a cry for help this bot is my only chance of escape")
 
             else:

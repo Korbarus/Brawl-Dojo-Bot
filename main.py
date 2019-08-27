@@ -30,7 +30,7 @@ bot = commands.Bot(                         # Create a new bot
 
 @tasks.loop(minutes=10)
 async def change_status():
-        current_status = discord.Game(name=("as " + random.choice(Legends) + " in Brawlhalla"))
+        current_status = discord.Game(name=("as " + random.choice(Legends)))
         print (current_status)
         await bot.change_presence(status=discord.Status.online, activity=current_status)
 
@@ -45,7 +45,7 @@ async def on_message(message):
     if message.author == bot.user:
         return
 
-cogs = ['cogs.basic', 'cogs.misc','cogs.mentors']
+cogs = ['cogs.basic', 'cogs.misc','cogs.mentors',"cogs.admin"]
 
 @bot.event
 async def on_ready():                                       # Do this when the bot is logged in

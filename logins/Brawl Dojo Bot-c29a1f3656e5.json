@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "brawl-dojo-bot",
+  "private_key_id": "c29a1f3656e5dd65c18a63bc7ed53465df75a3ec",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDZeLGW+7Ake1Sq\nIFF9QQTpZIEGFKl+PgadWGAcchXHpm8CAE4Yd1bPGVJF3ZO8LS/Rw8wCoi7C2ogY\nOrJSW+NoMdT0+lvKOMPpvIEq13jTz2Dkxxd7KPguyDzB+I773AuEVBKnb5mLvViM\ndHAjGZP5knn9zsVBdgb51qDWhwKGHYUbErD0DOvCZtzcTzA/MpBot5EcG9HTGAKm\nQGrpn3mwNKzl5aVr22fFirCBR5nkgf3PaoKlp8LUkD+NPzHZEzuyQj9sYy8yA1lV\nfJ/MNqWFSCC79F4aUbPTqFD/VP947NhV/04DI/wPQ+W1/p25osEFl6ddvpu2BjEX\n3W/V4hpJAgMBAAECggEAAar8L8gE89NRNOqV5g21sAOareLHpJG++Xs+Mr7F5MpY\nyqZq6K2b4G9jmhGTJOTPBxTpl+OT05hbPO/aykTWJecm0Z2zOjQkc4+D6pOkAlD8\nnkxAmzYXOszxtoJ/Mwr9uL3bXsTmWZ4uEijnQk+T1HtjrO7maGYza372UDF1NdFN\ne1qLgiQ50ibmrxcTrOEz9F18sS7cuhQEwujjb5dNli2xF+l7AwC8IGfST9X8Ccmr\nPx2eRfuix8fYPZCTa9BSjd3e3VgQ8naMktTatkNj5uJJ8i4nKNC1mou66hAAGjBC\nyHeHtX7/HKKf1hDaGZErRBWHLL+bAeDRea2+pJZaYQKBgQDzgLeVMrn6fABvUiAc\nw1/EseoEr/jNsAT4oFItbGe1SeoOmO7mcmrnbTkrSUtUoaX7C6iFJjPfukCbA9cb\nekJJdCa86p51CiaQPKp/XzSNTPwRfWxTWVpOPPD0s8sIRGH3/CwH6sS9ZTCGBxcx\n9ikzNbRYBhMBtnIPnkx8KDXFfQKBgQDkofYm2tfpgQfsGQj03ZyrTCHM0x9QQiZV\nAoYAdB9ACgFSjdKVP/nEF+LwrKZnW72eNtQ6p8E9UunPf1WTdmAEkB1BjVrYkSjG\nw5a1bldpaDKJupcBdbIpYWUBQSGdl7GJj3Lx4fG9KTY3CPdj2XEkyRYrlzOcLSOD\n5+SkGPoRvQKBgFMvtQfmZXy6IhflsYzB/hSfRzhEubXjHT+m3YwhDaj0UF6eRnc5\nvWXEfZRZHMAT3TVPfUnHjE8xPOL4Q+NiOAUKBjXh3TJUvmnmH8UVzEk9dJuxAnHT\nA7PYw+SFC6aOXf2vC4fE32Noj1QqVfU+iEKzZSHxKUsbfgnx5WVBA2WtAoGAWTpg\nX6+e/jFuTxVCKpZms2+l7VMj8GWwohK3C2xGWe7Nr1NMMRVju8T6u6UV2Fa0fQ+2\n6iFYSD+YonN2iXN0a7N2x4OMReL5AAGLSsmCcc/JkXjxwA8X9hBdpAywOtnd3urO\nGFpuxr1TvEzSh/RvtMSJ039SFAyFxM/2qphY2B0CgYBgiwrTV6wJXJQusyIxav8Y\nO+up3DD/+k4spPBeHihwPxWQob1yJc4M8vpjCV1fuLfqf7i+UpTYGmtBB0yYQThW\nrcespd5aIBa0jFEdoOc/uGjJFkB7oM02W/+g/VGthhRn4IhvkhaVZVxB0cxV0ErK\nfHvZWFYifcnwkfDj23lbrg==\n-----END PRIVATE KEY-----\n",
+  "client_email": "brawldojo@brawl-dojo-bot.iam.gserviceaccount.com",
+  "client_id": "106614446729729281368",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/brawldojo%40brawl-dojo-bot.iam.gserviceaccount.com"
+}
