@@ -66,7 +66,7 @@ async def on_member_join(member):
     newUserMessage = discord.Embed(title="** **", color=0x00ff00, description="Welcome to Brawl Dojo, please read <#612312585005694997> and <#612747304994340870> and contact our staff if you need any assistance. ")
     newUserMessage.set_thumbnail(url=str(bot.user.avatar_url))
     newUserMessage.set_author(name="Welcome to Brawl Dojo", icon_url=bot.user.avatar_url)
-    newUserMessage.add_field(name="\u200b", value="Please see our guides for generalised help.")
+    newUserMessage.add_field(name="\u200b", value="To recieve mentoring, please read <#612312585005694997> and <#614229084775383050> thoroughly, especially the pins of <#614229084775383050>.e")
 
 
     await member.send(embed=newUserMessage)
