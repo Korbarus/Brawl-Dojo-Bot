@@ -44,7 +44,7 @@ class admin(commands.Cog):
 
 
             #The message sent to the mentee
-            pairmsg = ("You've been paired with: \n \n " + mentor.mention)
+            pairmsg = ("You've been paired with: \n \n " + mentor.mention + "(@" + str(mentor) + ")")
             menteeMessage = discord.Embed(title="Your mentor request has been processed!",description=pairmsg)
             menteeMessage.set_thumbnail(url=mentor.avatar_url)
             menteeMessage.add_field(name="\u200b",value="Feel free to DM your new mentor.")
@@ -52,7 +52,7 @@ class admin(commands.Cog):
             await mentee.send(embed=menteeMessage)
 
             #The message sent to the mentee
-            pairmsg = ("You've been paired with: \n \n " + mentee.mention)
+            pairmsg = ("You've been paired with: \n \n " + mentee.mention + "(@" + str(mentee) + ")")
             mentorMessage = discord.Embed(title="You have a new mentee!",description=pairmsg)
             mentorMessage.set_thumbnail(url=mentee.avatar_url)
             mentorMessage.add_field(name="\u200b", value="Feel free to DM your new mentee.")
