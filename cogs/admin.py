@@ -1,5 +1,5 @@
 from discord.ext import commands,tasks
-import discord, random
+import discord, random, json
 from datetime import datetime as d
 
 class admin(commands.Cog):
@@ -15,8 +15,24 @@ class admin(commands.Cog):
     )
     @commands.has_permissions(administrator=True)
     async def setmentor(self, ctx, mentee, mentor):
-        mentee = await commands.MemberConverter().convert(ctx, argument=mentee)
-        mentor = await commands.MemberConverter().convert(ctx, argument=mentor)
+        ErrorBool = False
+        try:
+            mentee = await commands.MemberConverter().convert(ctx, argument=mentee)
+        except discord.ext.commands.errors.BadArgument:
+            errorEmbed = discord.Embed(title="\u200b", description="You haven't specified a mentee in this command.")
+            errorEmbed.set_author(name="Error processing request", icon_url=ctx.message.author.avatar_url)
+            errorEmbed.set_thumbnail(url=ctx.message.author.avatar_url)
+            ErrorBool = True
+            await ctx.send(embed=errorEmbed)
+
+        try:
+            mentor = await commands.MemberConverter().convert(ctx, argument=mentor)
+        except discord.ext.commands.errors.BadArgument:
+            errorEmbed = discord.Embed(title="\u200b", description="You haven't specified a mentor in this command.")
+            errorEmbed.set_author(name="Error processing request", icon_url=ctx.message.author.avatar_url)
+            errorEmbed.set_thumbnail(url=ctx.message.author.avatar_url)
+            ErrorBool = True
+            await ctx.send(embed=errorEmbed)
 
         if ctx.channel.id != 612716628089503782:
             errorEmbed = discord.Embed(title="\u200b",description="This command can only be used in <#612716628089503782>.")
@@ -24,23 +40,11 @@ class admin(commands.Cog):
             errorEmbed.set_thumbnail(url=ctx.message.author.avatar_url)
             await ctx.send(embed=errorEmbed)
 
-        else:
-            if (mentor == isinstance(mentor, discord.Member)):
-                errorEmbed = discord.Embed(title="\u200b",description="You haven't specified a mentor in this command.")
-                errorEmbed.set_author(name="Error processing request" , icon_url=ctx.message.author.avatar_url)
-                errorEmbed.set_thumbnail(url=ctx.message.author.avatar_url)
-                await ctx.send(embed=errorEmbed)
-
-            elif (mentee == isinstance(mentee, discord.Member)):
-                errorEmbed = discord.Embed(title="\u200b",description="You haven't specified a mentee in this command.")
-                errorEmbed.set_author(name="Error processing request" , icon_url=ctx.message.author.avatar_url)
-                errorEmbed.set_thumbnail(url=ctx.message.author.avatar_url)
-                await ctx.send(embed=errorEmbed)
-            else:
-                errorEmbed = discord.Embed(title="\u200b",description="Both parties have been messaged by the bot.")
-                errorEmbed.set_author(name="Request processed!" , icon_url=ctx.message.author.avatar_url)
-                errorEmbed.set_thumbnail(url=ctx.message.author.avatar_url)
-                await ctx.send(embed=errorEmbed)
+        elif ErrorBool == False:
+            errorEmbed = discord.Embed(title="\u200b",description="Both parties have been messaged by the bot.")
+            errorEmbed.set_author(name="Request processed!" , icon_url=ctx.message.author.avatar_url)
+            errorEmbed.set_thumbnail(url=ctx.message.author.avatar_url)
+            await ctx.send(embed=errorEmbed)
 
 
             #The message sent to the mentee
@@ -64,6 +68,55 @@ class admin(commands.Cog):
             async for elem in mentorrequests.history():
                 if elem.author == mentee:
                     await elem.add_reaction(emoji="✅")
+
+            #open file
+            with open("assets/menteelist.txt","a+") as MenteeList:
+                MenteeList.write(str(mentor)+":"+str(mentee)+"\n")
+            MenteeList.close()
+
+
+            #if key = mentor
+                #add mentee tag to list of mentors
+                #else:
+                #add key with mentor and empty list
+                #add mentee to empty list
+
+    @commands.command(
+        name='whomentor',
+        description="Lists a mentor's mentees.",
+        aliases=['whom', "wm","wmentor","menteelist"]
+    )
+
+    async def whomentor(self, ctx, mentor=""):
+        if mentor=="":
+            mentor = ctx.author
+        else:
+            mentor = await commands.MemberConverter().convert(ctx, argument=mentor)
+
+        playerList = []
+        with open ("assets/menteelist.txt","r+") as MenteeList:
+            for line in MenteeList:
+                if line.startswith(str(mentor)):
+                    currLine = line.split(":")
+                    currLine.remove(str(mentor))
+                    playerList.append(currLine[0])
+                    print(playerList)
+                else:
+                    pass
+        MenteeList.close()
+
+        mentees = discord.Embed(title="\u200b", description="Here's a list of the requested mentor's mentees.")
+        title = (str(mentor)+"'s Mentees")
+        mentees.set_author(name=title, icon_url=ctx.message.author.avatar_url)
+        mentees.set_thumbnail(url=mentor.avatar_url)
+        for item in playerList:
+            num = ("#"+str((playerList.index(item)+1)))
+            mentee=("@"+item)
+            mentees.add_field(name=num, value=mentee, inline=True)
+
+        await ctx.send(embed=mentees)
+
+
 
 def setup(bot):
     bot.add_cog(admin(bot))

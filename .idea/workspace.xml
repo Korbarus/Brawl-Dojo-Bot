@@ -15,30 +15,8 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>channe,</find>
-      <find>channel.id</find>
-      <find>291550</find>
-      <find>played</find>
-      <find>Thor</find>
-      <find>status</find>
-      <find>as</find>
-      <find>error</find>
-      <find>e</find>
-      <find>icon_</find>
-      <find>embed</find>
-      <find>icon_url</find>
-      <find>print(ctx)</find>
-    </findStrings>
-  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-7" />
-    <option name="width" value="974" />
-    <option name="height" value="1087" />
   </component>
   <component name="ProjectId" id="1QEdgkrHXElDqd8Hdsm67IFhPnQ" />
   <component name="PropertiesComponent">
@@ -160,7 +138,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
