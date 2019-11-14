@@ -120,7 +120,7 @@ class Mentors(commands.Cog):
                                 description="Your steam profile doesn't have 50 hours in Brawlhalla yet."
                             )
                             confirmEmbed.set_thumbnail(url=str(ctx.message.author.avatar_url))
-                            confirmEmbed.set_author(name="You don't have enough hours yet.",icon_url=ctx.message.author.avatar_url)
+                            confirmEmbed.set_author(name="You don't have enough hours yet. You might have also not set up your privacy settings correctly.",icon_url=ctx.message.author.avatar_url)
 
                             await ctx.send(embed=confirmEmbed)
 
@@ -128,16 +128,49 @@ class Mentors(commands.Cog):
                         confirmEmbed = discord.Embed(
                             title="\u200b",
                             color=0xff0000,
-                            description="Your steam profile doesn't have 50 hours in Brawlhalla yet. You may also not have your profile set to Public, which this bot requires to work correctly."
+                            description="You do not have all elements of your profile set to Public, which this bot requires to work correctly. If you're certain this isn't the case, your steam profile may not have 50 hours in Brawlhalla yet."
                         )
                         confirmEmbed.set_thumbnail(url=str(ctx.message.author.avatar_url))
-                        confirmEmbed.set_author(name="You don't have enough hours yet.",icon_url=ctx.message.author.avatar_url)
+                        confirmEmbed.set_author(name="Your privacy settings are incorrect.",icon_url=ctx.message.author.avatar_url)
 
                         await ctx.send(embed=confirmEmbed)
 
                 elif ProcessedID.get('response').get("success")==0:
                     await ctx.send("Sorry, we couldn't process that URL. Message the Bot Dev.")
 
+            elif link.startswith("https://steamcommunity.com/profiles/") or link.startswith("http://steamcommunity.com/profiles/"):
+                confirmEmbed = discord.Embed(
+                    title="\u200b",
+                    color=0x00ff00,
+                    description="Sorry, this type of profile link isn't supported yet. Please set up a vanity URL for your profile, as detailed in the pins."
+                )
+
+                confirmEmbed.set_thumbnail(url=str(ctx.message.author.avatar_url))
+                confirmEmbed.set_author(name="Sorry, this URL type isn't supported.",icon_url=ctx.message.author.avatar_url)
+
+                await ctx.send(embed=confirmEmbed)
+
+            elif link == "":
+                confirmEmbed = discord.Embed(
+                    title="\u200b",
+                    color=0x00ff00,
+                    description="You need to post your profile link after the command. Please see the pins for further guidance on how to use the command."
+                )
+
+                confirmEmbed.set_thumbnail(url=str(ctx.message.author.avatar_url))
+                confirmEmbed.set_author(name="You need to specify your profile link.",icon_url=ctx.message.author.avatar_url)
+                await ctx.send(embed=confirmEmbed)
+
+            else:
+                confirmEmbed = discord.Embed(
+                    title="\u200b",
+                    color=0x00ff00,
+                    description="You haven't written the link correctly. Please make sure you refer to the pins. The link must be the exact same format as the link shown there."
+                )
+
+                confirmEmbed.set_thumbnail(url=str(ctx.message.author.avatar_url))
+                confirmEmbed.set_author(name="Wrong URL format",icon_url=ctx.message.author.avatar_url)
+                await ctx.send(embed=confirmEmbed)
 
 
 

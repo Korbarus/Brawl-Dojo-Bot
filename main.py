@@ -2,6 +2,8 @@ from discord.ext import commands
 from discord.ext import tasks
 import discord, asyncio, random
 
+currRequests = {}
+
 Legends =("Bödvar", "Gnash", "Scarlet", "Lucien", "Barraza", "Ulgrim", "Wu Shang",
  "Mirage", "Artemis", "Kaya", "Zariel", "Thor", "Cassidy", "Queen Nai",
  "Thatch", "Teros", "Ember", "Diana", "Val", "Nix", "Caspian", "Isaiah",
@@ -9,6 +11,7 @@ Legends =("Bödvar", "Gnash", "Scarlet", "Lucien", "Barraza", "Ulgrim", "Wu Shan
  "Ragnir", "Mordex", "Sidra", "Jiro", "Dusk", "Lord Vraxx", "Sir Roland",
  "Sentinel", "Asuri", "Koji", "Kor", "Cross", "Yumiko", "Xull", "Lin Fei",
  "Fait")
+
 
 TOKEN = 'NjEyNDIzOTk0MzU1ODc1ODcx.XViTLQ.Q4d3V-LYL_uWh7392ESxH5J2qXg'
 #Prefix that comes before every command, edit this if necessary
@@ -24,7 +27,7 @@ bot = commands.Bot(                         # Create a new bot
     command_prefix=get_prefix,              # Set the prefix
     description="Brawl Dojo's own bot.",    # Set a description for the bot
     owner_id=120251776145293312,            # Your unique User ID
-    case_insensitive=True                   # Make the commands case insensitive
+    case_insensitive=True,                   # Make the commands case insensitive
 )
 
 
@@ -39,11 +42,39 @@ async def on_message(message):
     try:
         print(message.channel.name+"-"+message.author.name+":"+message.content)
         await bot.process_commands(message)
+        requestchannel = bot.get_channel(614089281207533579)
     except AttributeError:
         print ("DM - `"+message.author.name+":"+message.content)
-    #we do not want the bot to reply to itself
-    if message.author == bot.user:
-        return
+    reqChannel = bot.get_channel(614089281207533579)
+    if message.channel == reqChannel:
+        print("we did it reddit")
+        discordTag = (message.author.name + message.author.discriminator)
+        req = discord.Embed(title=discordTag,description=message.content)
+        req.set_thumbnail(url=message.author.avatar_url)
+        req.set_footer(text="React below to claim this mentee!",icon_url=bot.user.avatar_url)
+        mentorChannel = bot.get_channel(615139876647731211)
+        msg = await mentorChannel.send(embed=req)
+        currRequests[msg.id] = message.author.mention
+
+
+@bot.event
+async def on_reaction_add(reaction, user):
+    print (reaction.message.id)
+    if reaction.message.id in currRequests:
+        channel = bot.get_channel(612716628089503782)
+        msg = ' '.join(map(str, ["=sm", currRequests[reaction.message.id], user.mention]))
+        embedmsg = await bot.get_context(await channel.send(msg))
+        command = bot.get_command("setmentor")
+        await embedmsg.invoke(command,currRequests[reaction.message.id], user.mention)
+
+        editedEmbed = discord.Embed(title="Mentee has been claimed.", color=0x00ff00, description="{0} has been claimed by {1}!".format(currRequests[reaction.message.id], user.mention))
+        editedEmbed.set_thumbnail(url=bot.user.avatar_url)
+        await reaction.message.edit(embed=editedEmbed)
+        currRequests.pop(reaction.message.id)
+        await reaction.remove(user)
+
+
+
 
 cogs = ['cogs.basic', 'cogs.misc','cogs.mentors',"cogs.admin"]
 
