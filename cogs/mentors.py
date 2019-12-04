@@ -1,7 +1,6 @@
 from discord.ext import commands
-from datetime import datetime as d
 from steam import WebAPI
-import requests, math, discord, gspread, oauth2client
+import requests, math, discord, gspread
 from oauth2client.service_account import ServiceAccountCredentials
 #
 api = WebAPI(key="F100705340AAD1C9B521857E9FEECC14")

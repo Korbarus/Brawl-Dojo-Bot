@@ -41,6 +41,7 @@ async def change_status():
 async def on_message(message):
     try:
         print(message.channel.name+"-"+message.author.name+":"+message.content)
+
         await bot.process_commands(message)
         requestchannel = bot.get_channel(614089281207533579)
     except AttributeError:

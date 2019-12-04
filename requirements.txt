@@ -1,0 +1,5 @@
+steam
+oauth2client
+gspread
+requests
+discord
