@@ -81,6 +81,20 @@ class Misc(commands.Cog):
 
         return
 
+    @commands.command(
+        name="blegg",
+        description="test command to prove git",
+        aliases=["bleggerz", "bleggoo"],
+        cogs="cog"
+    )
+    async def blegg(self, ctx):
+        embed = discord.Embed(title="**BLEGG**", color=0xc97d7d)
+
+        embed.set_thumbnail(url=self.bot.user.avatar_url)
+        embed.set_footer(text="blegg is egg")
+
+        await ctx.send(embed=embed)
+
 
 def setup(bot):
     bot.add_cog(Misc(bot))
