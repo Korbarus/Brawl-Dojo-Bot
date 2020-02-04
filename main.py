@@ -13,7 +13,7 @@ Legends =("Bödvar", "Gnash", "Scarlet", "Lucien", "Barraza", "Ulgrim", "Wu Shan
  "Fait")
 
 
-TOKEN = 'NjEyNDIzOTk0MzU1ODc1ODcx.XViTLQ.Q4d3V-LYL_uWh7392ESxH5J2qXg'
+TOKEN = 'NjEyNDIzOTk0MzU1ODc1ODcx.XjnkIQ.Q9vYSRM1W_yi6Ax4oOEM4jC6X_o'
 #Prefix that comes before every command, edit this if necessary
 
 def get_prefix(client, message):

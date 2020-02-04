@@ -69,6 +69,36 @@ class admin(commands.Cog):
                 MenteeList.write(str(mentor)+":"+str(mentee)+"\n")
             MenteeList.close()
 
+    @commands.command(
+        name='decline',
+        description="Declines the specified user's mentor application.",
+        aliases=['reject']
+    )
+
+    @commands.has_permissions(administrator=True)
+    async def decline(self, ctx, mentee):
+        try:
+            mentee = await commands.MemberConverter().convert(ctx, argument=mentee)
+        except discord.ext.commands.errors.BadArgument:
+            errorEmbed = discord.Embed(title="\u200b", description="You haven't specified a mentee in this command.")
+            errorEmbed.set_author(name="Error processing request", icon_url=ctx.message.author.avatar_url)
+            errorEmbed.set_thumbnail(url=ctx.message.author.avatar_url)
+            await ctx.send(embed=errorEmbed)
+
+        pairmsg = ("Your application has been declined.")
+        mentorMessage = discord.Embed(title="Sorry,",description=pairmsg)
+        mentorMessage.set_thumbnail(url=mentee.avatar_url)
+        mentorMessage.add_field(name="\u200b", value="This is usually an issue with lack of mentors in your particular area. You can reapply for a mentor in a week's time.")
+        mentorMessage.set_footer(text="Courtesy of the Brawl Dojo", icon_url=self.bot.user.avatar_url)
+        await mentee.send(embed=mentorMessage)
+
+        mentorrequests = await self.bot.fetch_channel(614089281207533579)
+
+        async for elem in mentorrequests.history():
+            if elem.author == mentee:
+                await elem.add_reaction(emoji="❌")
+
+
     # Define a new command
     @commands.command(
         name='setmentor',
