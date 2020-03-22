@@ -95,7 +95,7 @@ class Mentors(commands.Cog):
                         hrsPlayed = math.ceil((minsPlayed / 60))
                         print (hrsPlayed)
 
-                        if (hrsPlayed >= 50):
+                        if (hrsPlayed >= 175):
 
                             role = discord.utils.get(ctx.guild.roles, name="Mentee")
                             await ctx.author.add_roles(role)
@@ -116,7 +116,7 @@ class Mentors(commands.Cog):
                             confirmEmbed = discord.Embed(
                                 title="\u200b",
                                 color=0xff0000,
-                                description="Your steam profile doesn't have 50 hours in Brawlhalla yet."
+                                description="Your steam profile doesn't have 175 hours in Brawlhalla yet."
                             )
                             confirmEmbed.set_thumbnail(url=str(ctx.message.author.avatar_url))
                             confirmEmbed.set_author(name="You don't have enough hours yet. You might have also not set up your privacy settings correctly.",icon_url=ctx.message.author.avatar_url)
@@ -127,7 +127,7 @@ class Mentors(commands.Cog):
                         confirmEmbed = discord.Embed(
                             title="\u200b",
                             color=0xff0000,
-                            description="You do not have all elements of your profile set to Public, which this bot requires to work correctly. If you're certain this isn't the case, your steam profile may not have 50 hours in Brawlhalla yet."
+                            description="You do not have all elements of your profile set to Public, which this bot requires to work correctly. If you're certain this isn't the case, your steam profile may not have 175 hours in Brawlhalla yet."
                         )
                         confirmEmbed.set_thumbnail(url=str(ctx.message.author.avatar_url))
                         confirmEmbed.set_author(name="Your privacy settings are incorrect.",icon_url=ctx.message.author.avatar_url)
